@@ -30,7 +30,10 @@ class Background extends StatelessWidget {
               width: size.width * 0.3,
             ),
           ),
-          child,
+          SingleChildScrollView(
+            padding: EdgeInsets.symmetric(vertical: 50),
+            child: child,
+          ),
         ],
       ),
     );
