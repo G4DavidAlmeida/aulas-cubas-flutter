@@ -5,7 +5,19 @@ import 'package:cotacao/contants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  double _price = 0;
+  void _setPrice(double value) {
+    setState(() {
+      _price = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,7 +39,9 @@ class WelcomeScreen extends StatelessWidget {
               RoundedInputFieldNumber(
                 hintText: 'Digite o valor',
                 icon: Icons.attach_money_rounded,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  _setPrice(double.parse(value));
+                },
               ),
               SizedBox(height: size.height * 0),
               RoundedButton(
@@ -39,7 +53,9 @@ class WelcomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return CalculateScreen();
+                        return CalculateScreen(
+                          price: _price,
+                        );
                       },
                     ),
                   );
