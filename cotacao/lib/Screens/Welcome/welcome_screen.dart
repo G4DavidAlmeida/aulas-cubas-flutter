@@ -49,16 +49,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 text: "CALCULAR",
                 textColor: Colors.white,
                 press: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return CalculateScreen(
-                          price: _price,
-                        );
-                      },
-                    ),
-                  );
+                  if (_price > 0)
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CalculateScreen(
+                            price: _price,
+                          );
+                        },
+                      ),
+                    );
                 },
               )
             ],
