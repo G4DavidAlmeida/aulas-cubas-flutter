@@ -9,8 +9,8 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  String _nome_produto;
-  String _peso_produto;
+  String _nome_produto = "";
+  String _peso_produto = "";
   List<Compra> _compras = [Compra("Tomate", "5 kg")];
 
   @override

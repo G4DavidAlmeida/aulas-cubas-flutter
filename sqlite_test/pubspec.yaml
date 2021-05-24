@@ -1,4 +1,4 @@
-name: controle_gastos
+name: sqlite_test
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -26,7 +26,6 @@ dependencies:
   path:
   path_provider:
   sqflite:
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
