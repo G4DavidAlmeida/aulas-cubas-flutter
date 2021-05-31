@@ -8,22 +8,25 @@ class Connect {
     return _singleton;
   }
 
-  static _dataBaseManager() async {
+  static dataBaseManager() async {
     final int versiondb = 1;
     final pathDatabase = await getDatabasesPath();
-    final localDatabase = join(pathDatabase, "passagemOnibus.db");
+    final localDatabase = join(pathDatabase, "base3.db");
 
     var connection = await openDatabase(localDatabase,
         version: versiondb, onCreate: Connect._onCreate);
+
     return connection;
   }
 
   static OnDatabaseCreateFn _onCreate(db, versiondb) {
     db.execute("""
-    CREATE TABLE passageiros (
+    CREATE TABLE passageiro (
       id          INTERGER PRIMARY KEY,
-      descricao   VARCHAR,
-      enable      INTEGER
+      nome        VARCHAR(50),
+      cpf         VARCHAR(25) UNIQUE,
+      idade       INT,
+      valor       NUMERIC(4,2)
     )
     """);
   }
