@@ -4,7 +4,6 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class Passageiro {
-  int id;
   String nome;
   String cpf;
   int idade;
@@ -37,22 +36,20 @@ class Passageiro {
     }
 
     Map<String, dynamic> dadosTask = {
-      "id": numeroPassageiros + 1,
       "nome": this.nome,
       "cpf": this.cpf,
       "idade": this.idade,
       "valor": this.valorPassagem
     };
 
-    this.id = await _connect.insert("passageiro", dadosTask);
-    print('passageiro ${this.id} salvo');
+    await _connect.insert("passageiro", dadosTask);
+    print('passageiro ${this.nome} salvo');
   }
 
   static List<Passageiro> convertList(query) {
     List<Passageiro> list = [];
     for (var item in query) {
       var passageiro = new Passageiro(item['nome'], item['cpf'], item['idade']);
-      passageiro.id = item['id'];
       passageiro.valorPassagem = double.parse(item['valor'].toString());
       list.add(passageiro);
     }
@@ -69,6 +66,7 @@ class Passageiro {
   Future<void> remove() async {
     this._connect = await Connect.dataBaseManager();
 
-    await _connect.delete('passageiro', where: 'id = ?', whereArgs: [this.id]);
+    await _connect
+        .delete('passageiro', where: 'cpf = ?', whereArgs: [this.cpf]);
   }
 }

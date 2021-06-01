@@ -11,7 +11,7 @@ class Connect {
   static dataBaseManager() async {
     final int versiondb = 1;
     final pathDatabase = await getDatabasesPath();
-    final localDatabase = join(pathDatabase, "base3.db");
+    final localDatabase = join(pathDatabase, "base1.db");
 
     var connection = await openDatabase(localDatabase,
         version: versiondb, onCreate: Connect._onCreate);
@@ -22,9 +22,8 @@ class Connect {
   static OnDatabaseCreateFn _onCreate(db, versiondb) {
     db.execute("""
     CREATE TABLE passageiro (
-      id          INTERGER PRIMARY KEY,
       nome        VARCHAR(50),
-      cpf         VARCHAR(25) UNIQUE,
+      cpf         VARCHAR(16) PRIMARY KEY,
       idade       INT,
       valor       NUMERIC(4,2)
     )

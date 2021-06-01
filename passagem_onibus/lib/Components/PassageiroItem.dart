@@ -19,7 +19,7 @@ class PassageiroItem extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(bottom: 10),
             child: Text(
-              'Passageiro ${passageiro.id}',
+              'Passageiro ${passageiro.nome}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
